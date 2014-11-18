@@ -45,7 +45,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
-|0.0.2|2014-11-18|Fixed travis.yml and package json for correct travis.ci handling|
+|0.0.2|2014-11-18|Fixed travis.yml and package json for correct travis.ci handling + added ask for min. node version|
 |0.0.1|2014-11-18|Initial commit|
 
 ## The MIT License (MIT)

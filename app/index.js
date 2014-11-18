@@ -34,6 +34,10 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
       message: 'The initial version of this module?',
       default: "0.0.1"
     },{
+      name: 'minnodeversion',
+      message: 'The minimal node version',
+      default: "0.10.0"
+    },{
       type: "confirm",
       name: 'addtests',
       message: 'Add mocha test skeleton?',
@@ -55,6 +59,7 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
       this.modulename = props.modulename;
       this.moduledesc = props.moduledesc;
       this.moduleversion = props.moduleversion;
+      this.minnodeversion = props.minnodeversion;
       this.addtests = props.addtests;
       this.useredis = props.useredis;
       this.usedocs = props.usedocs;
