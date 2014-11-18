@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-generator-nodemodule' ]; then cd .. && eval "mv $currentfolder generator-generator-nodemodule" && cd generator-generator-nodemodule; fi
+

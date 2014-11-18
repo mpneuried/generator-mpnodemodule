@@ -1,0 +1,34 @@
+{
+  "name": "<%= modulename %>",
+  "version": "0.0.1",
+  "description": "<%= moduledesc %>",
+  "keywords": [],
+  "homepage": "https://github.com/<%= githubuser %>/<%= modulename %>",
+  "bugs": "https://github.com/<%= githubuser %>/<%= modulename %>/issues",
+  "author": {
+    "name": "<%= githubuser %>",
+    "email": "",
+    "url": "https://github.com/<%= modulename %>"
+  },
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<%= githubuser %>/<%= modulename %>.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "mpbasic": "0.0.x"<% if( useredis ){ %>,
+    "redis": "0.12.x",
+    "hiredis": "0.1.x"<% } %>
+  },
+  "devDependencies": {<% if( addtests ){ %>
+    "should": "4.3.x",<% } %>
+    "grunt": "0.4.x",
+    "grunt-regarde": "*",
+    "grunt-contrib-coffee": "*",
+    "grunt-include-replace": "*",<% if( addtests ){ %>
+    "grunt-mocha-cli": "*",<% } %><% if( usedocs ){ %>
+    "grunt-docker": "0.0.x",<% } %>
+    "grunt-contrib-clean": "*"
+  }
+}
