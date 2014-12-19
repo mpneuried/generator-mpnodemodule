@@ -11,7 +11,7 @@ module.exports = (grunt) ->
 			changed:
 				expand: true
 				cwd: '_src'
-				src:	[ '<% print( _.first( ((typeof grunt !== "undefined" && grunt !== null ? (_ref = grunt.regarde) != null ? _ref.changed : void 0 : void 0) || ["_src/nothing"]) ).slice( "_src/".length ) ) %>' ]
+				src:	[ '<<% print("%") %> print( _.first( ((typeof grunt !== "undefined" && grunt !== null ? (_ref = grunt.regarde) != null ? _ref.changed : void 0 : void 0) || ["_src/nothing"]) ).slice( "_src/".length ) ) <% print("%") %>>' ]
 				# template to cut off `_src/` and throw on error on non-regrade call
 				# CF: `_.first( grunt?.regarde?.changed or [ "_src/nothing" ] ).slice( "_src/".length )
 				dest: ''

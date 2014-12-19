@@ -73,6 +73,7 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
     projectfiles: function() {
       this.template('_package.json', 'package.json');
       this.template('Gruntfile.coffee');
+      this.template('_travis.yml', '.travis.yml');
       this.template('README.md');
       this.template('LICENSE');
     },
@@ -80,7 +81,6 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
     configfiles: function () {
       this.src.copy('_gitignore', '.gitignore');
       this.src.copy('_npmignore', '.npmignore');
-      this.src.copy('_travis.yml', '.travis.yml');
       this.src.copy('_editorconfig', '.editorconfig');
     },
 
