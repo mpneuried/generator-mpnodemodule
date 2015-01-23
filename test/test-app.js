@@ -12,7 +12,7 @@ describe('generator-nodemodule:app', function () {
       .inDir(path.join(os.tmpdir(), './temp-test'))
       .withOptions({ 'skip-install': true })
       .withPrompt({
-        modulename: "testmodule"
+        modulename: "test-module"
       })
       .on('end', done);
   });
@@ -27,14 +27,14 @@ describe('generator-nodemodule:app', function () {
       'README.md',
       'Gruntfile.coffee',
       '_src/index.coffee',
-      '_src/lib/testmodule.coffee',
+      '_src/lib/main.coffee',
       '_src/lib/redisconnector.coffee',
       '_src/test/main.coffee'
     ]);
   });
    it('file content', function () {
-    var rgx = new RegExp( "# testmodule", "gi" );
-    assert.fileContent('_src/lib/testmodule.coffee', rgx );
+    var rgx = new RegExp( "# TestModule", "gi" );
+    assert.fileContent('_src/lib/main.coffee', rgx );
   });
   
 });

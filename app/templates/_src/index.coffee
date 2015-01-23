@@ -1,3 +1,3 @@
 exports.version = '@@version'
 
-module.exports = require './lib/<%= modulename %>'
+module.exports = require './lib/main'

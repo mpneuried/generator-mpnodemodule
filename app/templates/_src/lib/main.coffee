@@ -1,4 +1,4 @@
-# # <%= modulename %>
+# # <%= classname %>
 <% if( useredis ){ %>
 # ### extends [RedisConnector](./redisconnector.coffee.html)
 <% }else{ %>
@@ -14,14 +14,14 @@
 # [Redisconnector](./redisconnector.coffee.html)
 Redisconnector = require( "./redisconnector" ) 
 <% } %>
-class <%= modulename %> extends <% if( useredis ){ %>Redisconnector<% }else{ %>require( "mpbasic" )()<% } %>
+class <%= classname %> extends <% if( useredis ){ %>Redisconnector<% }else{ %>require( "mpbasic" )()<% } %>
 
 	# ## defaults
 	default: =>
 		@extend super, 
-			# **<%= modulename %>.foo** *Number* This is a example default option
+			# **<%= classname %>.foo** *Number* This is a example default option
 			foo: 23
-			# **<%= modulename %>.bar** *String* This is a example default option
+			# **<%= classname %>.bar** *String* This is a example default option
 			bar: "Buzz"
 
 	###	
@@ -44,4 +44,4 @@ class <%= modulename %> extends <% if( useredis ){ %>Redisconnector<% }else{ %>r
 		return
 
 #export this class
-module.exports = <%= modulename %>
+module.exports = <%= classname %>

@@ -57,6 +57,7 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
     this.prompt(prompts, function (props) {
       this.githubuser = props.githubuser;
       this.modulename = props.modulename;
+      this.classname = this._.classify( this.modulename );
       this.moduledesc = props.moduledesc;
       this.moduleversion = props.moduleversion;
       this.minnodeversion = props.minnodeversion;
@@ -88,7 +89,7 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
       this.dest.mkdir('_src');
       this.dest.mkdir('_src/lib');
       this.template('_src/index.coffee', "_src/index.coffee");
-      this.template('_src/lib/_module_skeleton.coffee', "_src/lib/" + this.modulename + ".coffee");
+      this.template('_src/lib/main.coffee', "_src/lib/main.coffee");
       if (this.useredis) {
         this.template('_src/lib/redisconnector.coffee', "_src/lib/redisconnector.coffee");
       }
