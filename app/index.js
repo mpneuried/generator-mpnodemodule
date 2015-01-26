@@ -22,6 +22,10 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
       message: 'The github username?',
       default: "username"
     },{
+      name: 'fullname',
+      message: 'You full name for licence info? If not defined the githubuser will be used',
+      default: ""
+    },{
       name: 'modulename',
       message: 'The name of this module?',
       default: "modulename"
@@ -56,6 +60,7 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
 
     this.prompt(prompts, function (props) {
       this.githubuser = props.githubuser;
+      this.fullname = props.fullname.length ? props.fullname : props.githubuser;
       this.modulename = props.modulename;
       this.classname = this._.classify( this.modulename );
       this.moduledesc = props.moduledesc;
@@ -65,7 +70,8 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
       this.useredis = props.useredis;
       this.usedocs = props.usedocs;
       var _d = new Date();
-      this.todaydate = _d.getFullYear() + "-" + ( _d.getMonth() + 1 ) + "-" + _d.getDate()
+      this.todaydate = _d.getFullYear() + "-" + ( _d.getMonth() + 1 ) + "-" + _d.getDate();
+      this.todayyear = _d.getFullYear();
       done();
     }.bind(this));
   },

@@ -7,7 +7,7 @@
 #
 # ### Exports: *Class*
 #
-# Main Module to init the heartbeat to redis
+# Main Module
 # 
 <% if( useredis ){ %>
 # **internal modules**
