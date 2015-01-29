@@ -37,6 +37,8 @@
 |:--:|:--:|:--|
 |<%= moduleversion %>|<%= todaydate %>|Initial commit|
 
+> Initially Generated with [generator-mpnodemodule](https://github.com/mpneuried/generator-mpnodemodule)
+
 ## The MIT License (MIT)
 
 Copyright © <%= todayyear %> <%= fullname %>, http://www.tcs.de

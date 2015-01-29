@@ -45,6 +45,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.0.7|2015-01-29|Better `.npmignore and prepublish call for `grunt build-dev`; bugfixes|
 |0.0.6|2015-01-26|fixed username, some comments and more tests|
 |0.0.5|2015-01-23|renamed main file to `main.coffee` used class valid version of modulename|
 |0.0.2|2014-11-18|Fixed travis.yml and package json for correct travis.ci handling + added ask for min. node version|

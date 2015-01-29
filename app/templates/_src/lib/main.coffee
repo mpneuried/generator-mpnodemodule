@@ -17,7 +17,7 @@ Redisconnector = require( "./redisconnector" )
 class <%= classname %> extends <% if( useredis ){ %>Redisconnector<% }else{ %>require( "mpbasic" )()<% } %>
 
 	# ## defaults
-	default: =>
+	defaults: =>
 		@extend super, 
 			# **<%= classname %>.foo** *Number* This is a example default option
 			foo: 23

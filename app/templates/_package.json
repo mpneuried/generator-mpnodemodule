@@ -1,6 +1,6 @@
 {
 	"name": "<%= modulename %>",
-	"version": "0.0.1",
+	"version": "<%= moduleversion %>",
 	"description": "<%= moduledesc %>",
 	"keywords": [],
 	"homepage": "https://github.com/<%= githubuser %>/<%= modulename %>",
@@ -16,11 +16,12 @@
 		"url": "https://github.com/<%= githubuser %>/<%= modulename %>.git"
 	},
 	"scripts": {
-	"test": "grunt test"
+		"test": "grunt test",
+		"prepublish": "grunt build-dev"
 	},
-  "engines": {
-    "node": ">= <%= minnodeversion %>"
-  },
+	"engines": {
+		"node": ">= <%= minnodeversion %>"
+	},
 	"license": "MIT",
 	"dependencies": {
 		"mpbasic": "0.0.x"<% if( useredis ){ %>,
