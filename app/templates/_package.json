@@ -16,8 +16,7 @@
 		"url": "https://github.com/<%= githubuser %>/<%= modulename %>.git"
 	},
 	"scripts": {
-		"test": "grunt test",
-		"prepublish": "grunt build-dev"
+		"test": "grunt test"
 	},
 	"engines": {
 		"node": ">= <%= minnodeversion %>"

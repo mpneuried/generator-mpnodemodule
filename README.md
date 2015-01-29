@@ -45,6 +45,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.0.10|2015-01-29|removed prepublish script [npm#3059](https://github.com/npm/npm/issues/3059) and fixed travis.yml|
 |0.0.9|2015-01-29|Default modulename by current folder; bugfixes|
 |0.0.8|2015-01-29|Added `nodei.co` images to readme|
 |0.0.7|2015-01-29|Better `.npmignore and prepublish call for `grunt build-dev`; bugfixes|
