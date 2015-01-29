@@ -28,7 +28,7 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
     },{
       name: 'modulename',
       message: 'The name of this module?',
-      default: "modulename"
+      default: process.cwd().split(path.sep).pop()
     },{
       name: 'moduledesc',
       message: 'The description of this module?',
