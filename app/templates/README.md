@@ -7,6 +7,8 @@
 
 <%= moduledesc %>
 
+[![NPM](https://nodei.co/npm/<%= modulename %.png?downloads=true&stars=true)](https://nodei.co/npm/<%= modulename %/)
+
 *Written in coffee-script*
 
 **INFO: all examples are written in coffee-script**
@@ -36,6 +38,8 @@
 |Version|Date|Description|
 |:--:|:--:|:--|
 |<%= moduleversion %>|<%= todaydate %>|Initial commit|
+
+[![NPM](https://nodei.co/npm-dl/<%= modulename %>.png?months=6)](https://nodei.co/npm/<%= modulename %>/)
 
 > Initially Generated with [generator-mpnodemodule](https://github.com/mpneuried/generator-mpnodemodule)
 
