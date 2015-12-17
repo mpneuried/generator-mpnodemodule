@@ -45,6 +45,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.1.0|2015-12-17|Updated to yeoman 1.5 and made some fixes|
 |0.0.11|2015-02-09|Added node 0.12 and iojs to travis.yml|
 |0.0.10|2015-01-29|removed prepublish script [npm#3059](https://github.com/npm/npm/issues/3059) and fixed travis.yml|
 |0.0.9|2015-01-29|Default modulename by current folder; bugfixes|

@@ -1,10 +1,13 @@
 'use strict';
 var util = require('util');
+var _ = require('lodash');
 var path = require('path');
+var mkdirp = require( 'mkdirp' );
 var yeoman = require('yeoman-generator');
+
 var yosay = require('yosay');
 
-var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
+var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
   },
@@ -57,12 +60,11 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
       message: 'Add docker code doc generator?',
       default: true
     }];
-
     this.prompt(prompts, function (props) {
       this.githubuser = props.githubuser;
       this.fullname = props.fullname.length ? props.fullname : props.githubuser;
       this.modulename = props.modulename;
-      this.classname = this._.classify( this.modulename );
+      this.classname = _.capitalize(_.camelCase( this.modulename ));
       this.moduledesc = props.moduledesc;
       this.moduleversion = props.moduleversion;
       this.minnodeversion = props.minnodeversion;
@@ -86,21 +88,21 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
     },
 
     configfiles: function () {
-      this.src.copy('_gitignore', '.gitignore');
-      this.src.copy('_npmignore', '.npmignore');
-      this.src.copy('_editorconfig', '.editorconfig');
+      this.template('_gitignore', '.gitignore');
+      this.template('_npmignore', '.npmignore');
+      this.template('_editorconfig', '.editorconfig');
     },
 
     app: function() {
-      this.dest.mkdir('_src');
-      this.dest.mkdir('_src/lib');
+      mkdirp('_src');
+      mkdirp('_src/lib');
       this.template('_src/index.coffee', "_src/index.coffee");
       this.template('_src/lib/main.coffee', "_src/lib/main.coffee");
       if (this.useredis) {
         this.template('_src/lib/redisconnector.coffee', "_src/lib/redisconnector.coffee");
       }
       if (this.addtests) {
-        this.dest.mkdir('_src/test');
+        mkdirp('_src/test');
         this.template('_src/test/main.coffee', "_src/test/main.coffee");
       }
     }

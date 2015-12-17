@@ -9,10 +9,6 @@
 
 [![NPM](https://nodei.co/npm/<%= modulename %>.png?downloads=true&stars=true)](https://nodei.co/npm/<%= modulename %>/)
 
-*Written in coffee-script*
-
-**INFO: all examples are written in coffee-script**
-
 ## Install
 
 ```

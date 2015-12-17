@@ -1,9 +1,18 @@
+os:
+  - linux
+language: node_js
 <% if( useredis ){ %>services:
   - redis-server
-<% } %>language: node_js
+<% } %>
 node_js:
   - 0.10
   - 0.12
+  - 4.0
+  - 4.1
+  - 4.2
+  - 5.0
+  - 5.1
+  - 5.2
   - iojs
 before_script:
   - "npm install -g mocha grunt-cli"

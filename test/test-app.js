@@ -2,8 +2,8 @@
 'use strict';
 
 var path = require('path');
-var assert = require('yeoman-generator').assert;
-var helpers = require('yeoman-generator').test;
+var assert = require('yeoman-assert');
+var helpers = require('yeoman-test');
 var os = require('os');
 
 describe('generator-nodemodule:app', function () {
@@ -12,7 +12,7 @@ describe('generator-nodemodule:app', function () {
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './temp-test'))
         .withOptions({ 'skip-install': true })
-        .withPrompt({
+        .withPrompts({
           modulename: "test-module"
         })
         .on('end', done);
@@ -44,7 +44,7 @@ describe('generator-nodemodule:app', function () {
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './temp-test'))
         .withOptions({ 'skip-install': true })
-        .withPrompt({
+        .withPrompts({
           modulename: "test-module2",
           fullname: "Test U. User",
           useredis: false,
@@ -73,6 +73,8 @@ describe('generator-nodemodule:app', function () {
      it('file content', function () {
       var rgx = new RegExp( "# TestModule2", "gi" );
       assert.fileContent('_src/lib/main.coffee', rgx );
+
+      assert.fileContent('Gruntfile.coffee', "<%= pkg.version %>" );
       
       assert.fileContent('LICENSE', /Test\sU\.\sUser/gi );
     });
