@@ -89,6 +89,7 @@ var GeneratorNodemoduleGenerator = yeoman.generators.Base.extend({
       this.src.copy('_gitignore', '.gitignore');
       this.src.copy('_npmignore', '.npmignore');
       this.src.copy('_editorconfig', '.editorconfig');
+      this.src.copy('coffeelint.json', 'coffeelint.json');
     },
 
     app: function() {
