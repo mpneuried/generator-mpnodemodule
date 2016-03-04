@@ -23,9 +23,13 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.17.0",
-    "chalk": "^0.5.0",
-    "yosay": "^0.3.0"
+    "chalk": "^1.1.1",
+    "lodash": "^3.10.1",
+    "mkdirp": "^0.5.1",
+    "yeoman-assert": "^2.1.1",
+    "yeoman-generator": "^0.22.1",
+    "yeoman-test": "^1.0.0",
+    "yosay": "^1.1.0"
   },
   "devDependencies": {
     "mocha": "*"
