@@ -1,4 +1,4 @@
-# generator-generator-nodemodule [![Build Status](https://secure.travis-ci.org/mpneuried/generator-generator-nodemodule.png?branch=master)](https://travis-ci.org/mpneuried/generator-generator-nodemodule)
+# generator-generator-nodemodule [![Build Status](https://secure.travis-ci.org/mpneuried/generator-mpnodemodule.png?branch=master)](https://travis-ci.org/mpneuried/generator-mpnodemodule)
 
 > [Yeoman](http://yeoman.io) generator
 
