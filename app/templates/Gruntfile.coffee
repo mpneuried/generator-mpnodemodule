@@ -5,7 +5,11 @@ module.exports = (grunt) ->
 		watch:
 			module:
 				files: ["_src/**/*.coffee"]
-				tasks: [ "newer:coffee:changed" ]
+				tasks: [ "newer:coffee:base" ]
+			
+			module_test:
+				files: ["_src/**/*.coffee"]
+				tasks: [ "newer:coffee:base", "test" ]
 			
 		coffee:
 			base:
@@ -64,20 +68,26 @@ module.exports = (grunt) ->
 		<% } %>
 
 	# Load npm modules
-	grunt.loadNpmTasks "grunt-watch"
-	grunt.loadNpmTasks "grunt-newer"
+	grunt.loadNpmTasks "grunt-contrib-watch"
 	grunt.loadNpmTasks "grunt-contrib-coffee"
 	grunt.loadNpmTasks "grunt-contrib-clean"<% if( addtests ){ %>
 	grunt.loadNpmTasks "grunt-mocha-cli"<% } %>
 	grunt.loadNpmTasks "grunt-include-replace"<% if( usedocs ){ %>
 	grunt.loadNpmTasks "grunt-docker"<% } %>
+	grunt.loadNpmTasks "grunt-newer"
 
 	# ALIAS TASKS
 	grunt.registerTask "default", "build"<% if( usedocs ){ %>
 	grunt.registerTask "docs", "docker"<% } %>
+	grunt.registerTask "w", "watcher"
+	grunt.registerTask "wt", "watcher-test"
+	grunt.registerTask "watcher", [ "watch:module" ]
+	grunt.registerTask "watcher-test", [ "watch:module_test" ]
 	grunt.registerTask "clear", [ "clean:base" ]<% if( addtests ){ %>
 	grunt.registerTask "test", [ "mochacli:main" ]<% } %>
 
 	# build the project
 	grunt.registerTask "build", [ "clear", "coffee:base", "includereplace" ]
 	grunt.registerTask "build-dev", [ "clear", "coffee:base"<% if( usedocs ){ %>, "docs"<% } %><% if( addtests ){ %>, "test"<% } %> ]
+
+	return

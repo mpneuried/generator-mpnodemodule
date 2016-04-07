@@ -9,3 +9,5 @@ config*.json
 deploy.json
 .editorconfig
 .travis.yml
+*.env
+!*.env_skeleton
