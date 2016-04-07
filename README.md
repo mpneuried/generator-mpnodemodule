@@ -45,6 +45,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.2.0|2016-04-07|Updated deps (lodash 4.x) and switched from `grunt-regarde` to `grunt-watch` with `grunt-newer`|
 |0.1.1|2015-12-17|Fixed yeoman 1.5 issues|
 |0.1.0|2015-12-17|Updated to yeoman 1.5 and made some fixes|
 |0.0.12|2015-11-30|Optimized config files; Bugfixes|

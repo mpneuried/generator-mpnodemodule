@@ -1,6 +1,8 @@
 'use strict';
 var util = require('util');
-var _ = require('lodash');
+var _capitalize = require( "lodash/capitalize" );
+var _camelCase = require( "lodash/camelCase" );
+
 var path = require('path');
 var mkdirp = require( 'mkdirp' );
 var yeoman = require('yeoman-generator');
@@ -43,7 +45,7 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
     },{
       name: 'minnodeversion',
       message: 'The minimal node version',
-      default: "0.10.0"
+      default: ">= 4.0.0"
     },{
       type: "confirm",
       name: 'addtests',
@@ -64,7 +66,7 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       this.githubuser = props.githubuser;
       this.fullname = props.fullname.length ? props.fullname : props.githubuser;
       this.modulename = props.modulename;
-      this.classname = _.capitalize(_.camelCase( this.modulename ));
+      this.classname = _capitalize(_camelCase( this.modulename ));
       this.moduledesc = props.moduledesc;
       this.moduleversion = props.moduleversion;
       this.minnodeversion = props.minnodeversion;

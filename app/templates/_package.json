@@ -28,13 +28,14 @@
 		"hiredis": "0.1.x"<% } %>
 	},
 	"devDependencies": {<% if( addtests ){ %>
-		"should": "4.3.x",<% } %>
+		"should": "8.x",<% } %>
 		"grunt": "0.4.x",
-		"grunt-regarde": "*",
-		"grunt-contrib-coffee": "*",
+		"grunt-contrib-watch": "1.0",
+		"grunt-contrib-coffee": "1.x",
+		"grunt-contrib-clean": "1.x",
 		"grunt-include-replace": "*",<% if( addtests ){ %>
-		"grunt-mocha-cli": "*",<% } %><% if( usedocs ){ %>
-		"grunt-docker": "0.0.x",<% } %>
-		"grunt-contrib-clean": "*"
+		"grunt-mocha-cli": "2.x",<% } %><% if( usedocs ){ %>
+		"grunt-docker": "0.x",<% } %>
+		"grunt-newer": "1.x"
 	}
 }
