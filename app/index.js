@@ -63,8 +63,8 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       type: "checkbox",
       name: 'dockertest_versions',
       message: 'Select the node versions you want to add?',
-      choices: [ "latest", "lte", "0.10", "0.12", "4.2", "4.4", "5.0", "5.4", "6.0", "6.1" ],
-      default: [ "latest", "lte" ],
+      choices: [ "latest", "lts", "0.10", "0.12", "4.2", "4.4", "5.0", "5.4", "6.0", "6.1" ],
+      default: [ "latest", "lts" ],
       when: (function( selection ){
         return selection.dockertesting
       })
