@@ -45,7 +45,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
-|0.3.0|2016-05-13|Some small fixes; bestter test call; added test docs; added docker tests, optimized travis; optimized gruntfile; |
+|0.3.0|2016-05-13|Some small fixes; better test call; added test docs; added docker tests; optimized travis; optimized gruntfile;|
 |0.2.2|2016-04-08|Optimized ignorefiles|
 |0.2.1|2016-04-07|Fixed gruntfile and ignore files|
 |0.2.0|2016-04-07|Updated deps (lodash 4.x) and switched from `grunt-regarde` to `grunt-watch` with `grunt-newer`|
