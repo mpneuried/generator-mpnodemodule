@@ -19,6 +19,8 @@ do
 	   docker build -t=<%= githubuser %>.<%= modulename %>.dockertest.$version -f=$SCRIPTDIR/$DFile . > $BUILDLOGS
 	   echo "Run test ..."
 	   docker run --name=<%= githubuser %>.<%= modulename %>.dockertest.$version <%= githubuser %>.<%= modulename %>.dockertest.$version >&2
+	   echo "Remove container ..."
+	   docker rm <%= githubuser %>.<%= modulename %>.dockertest.$version >&2
    else
 	   echo "Dockerfile '$DFile' not found"
    fi
