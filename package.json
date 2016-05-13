@@ -26,9 +26,9 @@
     "chalk": "1.1.x",
     "lodash": "4.x",
     "mkdirp": "0.5.x",
-    "yeoman-assert": "2.1.x",
+    "yeoman-assert": "2.2.x",
     "yeoman-generator": "0.22.x",
-    "yeoman-test": "1.1.x",
+    "yeoman-test": "1.4.x",
     "yosay": "1.1.x"
   },
   "devDependencies": {

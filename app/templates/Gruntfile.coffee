@@ -79,12 +79,16 @@ module.exports = (grunt) ->
 	# ALIAS TASKS
 	grunt.registerTask "default", "build"<% if( usedocs ){ %>
 	grunt.registerTask "docs", "docker"<% } %>
-	grunt.registerTask "w", "watcher"
-	grunt.registerTask "wt", "watcher-test"
 	grunt.registerTask "watcher", [ "watch:module" ]
-	grunt.registerTask "watcher-test", [ "watch:module_test" ]
 	grunt.registerTask "clear", [ "clean:base" ]<% if( addtests ){ %>
+	grunt.registerTask "watcher-test", [ "watch:module_test" ]
 	grunt.registerTask "test", [ "mochacli:main" ]<% } %>
+
+	# ALIAS SHORTS
+	grunt.registerTask "b", "build"
+	grunt.registerTask "w", "watcher"<% if( addtests ){ %>
+	grunt.registerTask "wt", "watcher-test"
+	grunt.registerTask "t", "test"<% } %>
 
 	# build the project
 	grunt.registerTask "build", [ "clear", "coffee:base", "includereplace" ]

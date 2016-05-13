@@ -30,6 +30,49 @@
 
  * implement test cases to check for correct template generation.
 
+<% if( addtests ){ %>## Testing
+
+The tests are based on the [mocha.js](https://mochajs.org/) framework with [should.js](https://shouldjs.github.io/) as assertaion lib.
+To start the test just call
+
+```
+	npm test
+```
+
+or
+
+```
+	grunt test
+```
+
+If you want to be more precice use the mocha cli
+
+```
+	mocha -R nyan -t 1337 test/main.js
+```
+
+<% if( dockertesting ){ %>### Docker-Tests
+
+If you want to test your module against multiple node versions you can use the docker tests.
+
+**Preparation**
+
+```sh
+	# make sure you installed all dependencies
+	npm install
+	# build the files
+	grunt build
+```
+
+**Run**
+
+To run the tests through the defined versions run the following command:
+
+```
+	dockertests/run.sh
+```
+
+<% } %><% } %>
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|

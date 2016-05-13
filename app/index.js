@@ -53,6 +53,23 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       default: true
     },{
       type: "confirm",
+      name: 'dockertesting',
+      message: 'Add docker tests to check the module against multiple node versions?',
+      default: false,
+      when: (function( selection ){
+        return selection.addtests
+      })
+    },{
+      type: "checkbox",
+      name: 'dockertest_versions',
+      message: 'Select the node versions you want to add?',
+      choices: [ "latest", "lte", "0.10", "0.12", "4.2", "4.4", "5.0", "5.4", "6.0", "6.1" ],
+      default: [ "latest", "lte" ],
+      when: (function( selection ){
+        return selection.dockertesting
+      })
+    },{
+      type: "confirm",
       name: 'useredis',
       message: 'Add redis stubs?',
       default: true
@@ -71,6 +88,8 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       this.moduleversion = props.moduleversion;
       this.minnodeversion = props.minnodeversion;
       this.addtests = props.addtests;
+      this.dockertesting = props.dockertesting;
+      this.dockertest_versions = props.dockertest_versions;
       this.useredis = props.useredis;
       this.usedocs = props.usedocs;
       var _d = new Date();
@@ -94,6 +113,8 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       this.copy('_npmignore', '.npmignore');
       this.copy('_editorconfig', '.editorconfig');
       this.copy('coffeelint.json', 'coffeelint.json');
+
+     
     },
 
     app: function() {
@@ -107,6 +128,21 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       if (this.addtests) {
         mkdirp('_src/test');
         this.template('_src/test/main.coffee', "_src/test/main.coffee");
+
+      if( this.dockertesting ){
+        mkdirp('dockertests');
+        var _versions = [];
+        for (var i = this.dockertest_versions.length - 1; i >= 0; i--) {
+          var _dversion = this.dockertest_versions[i];
+          if( [ "lts", "latest" ].indexOf( _dversion ) >= 0 ){
+            this.template('dockertests/Dockerfile.xxx', "dockertests/Dockerfile." + _dversion, { dockertag: ( _dversion === "lts" ? "argon" : "latest" ) });
+          } else {
+            this.template('dockertests/Dockerfile.xxx', "dockertests/Dockerfile." + _dversion.replace( ".", "_" ), { dockertag: _dversion });
+          }
+          _versions.push( 'VERSIONS[' + _versions.length + ']="' + _dversion + '"' )
+        }
+        this.template('dockertests/run.sh', "dockertests/run.sh", { modulename: this.modulename, githubuser: this.githubuser, versions: _versions.join( "\n" ) });
+      }
       }
     }
   },

@@ -8,7 +8,7 @@
 	"author": {
 		"name": "<%= githubuser %>",
 		"email": "",
-		"url": "https://github.com/<%= modulename %>"
+		"url": "https://github.com/<%= githubuser %>/<%= modulename %>"
 	},
 	"main": "./index.js",
 	"repository": {
@@ -16,20 +16,23 @@
 		"url": "https://github.com/<%= githubuser %>/<%= modulename %>.git"
 	},
 	"scripts": {
-		"test": "grunt test"
+		"test": "mocha -r should -t 3000 test/main.js"
 	},
 	"engines": {
 		"node": ">= <%= minnodeversion %>"
 	},
 	"license": "MIT",
 	"dependencies": {
-		"mpbasic": "0.0.x"<% if( useredis ){ %>,
-		"redis": "0.12.x",
-		"hiredis": "0.1.x"<% } %>
-	},
+		<% if( useredis ){ %>
+		"redis": "2.6.x",<% } %>
+		"mpbasic": "0.0.x"
+	},<% if( useredis ){ %>
+	"optionalDependencies":{
+		"hiredis": "0.4.x"
+	},<% } %>
 	"devDependencies": {<% if( addtests ){ %>
 		"should": "8.x",<% } %>
-		"grunt": "0.4.x",
+		"grunt": "1.x",
 		"grunt-contrib-watch": "1.0",
 		"grunt-contrib-coffee": "1.x",
 		"grunt-contrib-clean": "1.x",
