@@ -77,7 +77,7 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       type: "confirm",
       name: 'usedocs',
       message: 'Add docker code doc generator?',
-      default: true
+      default: false
     }];
     this.prompt(prompts, function (props) {
       this.githubuser = props.githubuser;
@@ -139,7 +139,7 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
           } else {
             this.template('dockertests/Dockerfile.xxx', "dockertests/Dockerfile." + _dversion.replace( ".", "_" ), { dockertag: _dversion });
           }
-          _versions.push( 'VERSIONS[' + _versions.length + ']="' + _dversion + '"' )
+          _versions.push( 'VERSIONS[' + _versions.length + ']=' + _dversion )
         }
         this.template('dockertests/run.sh', "dockertests/run.sh", { modulename: this.modulename, githubuser: this.githubuser, versions: _versions.join( "\n" ) });
       }
