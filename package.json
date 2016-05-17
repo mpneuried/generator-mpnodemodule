@@ -1,6 +1,6 @@
 {
   "name": "generator-mpnodemodule",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Yeoman generator to generate a node module",
   "license": "MIT",
   "main": "app/index.js",

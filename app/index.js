@@ -104,6 +104,7 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       this.template('_package.json', 'package.json');
       this.template('Gruntfile.coffee');
       this.template('_travis.yml', '.travis.yml');
+      this.template('appveyor.yml', 'appveyor.yml');
       this.template('README.md');
       this.template('LICENSE');
     },
