@@ -14,5 +14,8 @@ RUN npm install
 COPY lib/ /usr/src/lib/
 COPY test/ /usr/src/test/
 COPY index.js /usr/src/
+COPY dockertests/test.sh /usr/src/test.sh
 
-CMD [ "npm", "test" ]
+RUN chmod +x /usr/src/test.sh
+
+CMD [ "/usr/src/test.sh" ]

@@ -142,6 +142,7 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
           }
           _versions.push( 'VERSIONS[' + _versions.length + ']=' + _dversion )
         }
+        this.copy('dockertests/test.sh', "dockertests/test.sh" )
         this.template('dockertests/run.sh', "dockertests/run.sh", { modulename: this.modulename, githubuser: this.githubuser, versions: _versions.join( "\n" ) });
       }
       }

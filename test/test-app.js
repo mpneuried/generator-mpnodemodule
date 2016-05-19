@@ -71,7 +71,12 @@ describe('generator-nodemodule:app', function () {
       ]);
       assert.noFile([
         '_src/test/main.coffee',
-        '_src/lib/redisconnector.coffee'
+        '_src/lib/redisconnector.coffee',
+        'dockertests/run.sh',
+        'dockertests/test.sh',
+        'dockertests/Dockerfile.0_10',
+        'dockertests/Dockerfile.latest',
+        'dockertests/Dockerfile.lts'
       ]);
     });
      it('file content', function () {
@@ -115,6 +120,7 @@ describe('generator-nodemodule:app', function () {
         '_src/lib/main.coffee',
         '_src/test/main.coffee',
         'dockertests/run.sh',
+        'dockertests/test.sh',
         'dockertests/Dockerfile.0_10',
         'dockertests/Dockerfile.latest',
         'dockertests/Dockerfile.lts'

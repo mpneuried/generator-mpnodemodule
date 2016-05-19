@@ -45,6 +45,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.3.3|2016-05-19|optimized docker tests|
 |0.3.2|2016-05-17|Added badge and config file for automated windows tests via appveyor|
 |0.3.1|2016-05-13|Typo fix|
 |0.3.0|2016-05-13|Some small fixes; better test call; added test docs; added docker tests; optimized travis; optimized gruntfile;|
