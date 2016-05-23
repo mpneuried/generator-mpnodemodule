@@ -1,6 +1,6 @@
-should = require('should')
+should = require( "should" )
 
-Module = require( "../." ) 
+Module = require( "../." )
 
 _moduleInst = null
 
@@ -17,7 +17,7 @@ describe "----- <%= modulename %> TESTS -----", ->
 		done()
 		return
 
-	describe 'Main Tests', ->
+	describe "Main Tests", ->
 
 		# Implement tests cases here
 		it "first test", ( done )->

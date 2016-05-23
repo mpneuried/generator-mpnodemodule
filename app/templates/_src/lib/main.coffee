@@ -8,26 +8,26 @@
 # ### Exports: *Class*
 #
 # Main Module
-# 
+#
 <% if( useredis ){ %>
 # **internal modules**
 # [Redisconnector](./redisconnector.coffee.html)
-Redisconnector = require( "./redisconnector" ) 
+Redisconnector = require( "./redisconnector" )
 <% } %>
 class <%= classname %> extends <% if( useredis ){ %>Redisconnector<% }else{ %>require( "mpbasic" )()<% } %>
 
 	# ## defaults
 	defaults: =>
-		@extend super, 
+		@extend super,
 			# **<%= classname %>.foo** *Number* This is a example default option
 			foo: 23
 			# **<%= classname %>.bar** *String* This is a example default option
 			bar: "Buzz"
 
-	###	
-	## constructor 
 	###
-	constructor: ( options )->
+	## constructor
+	###
+	constructor: ( options ) ->
 		super
 		<% if( useredis ){ %>
 		# wrap start method to only be active until the connection is established
@@ -40,7 +40,7 @@ class <%= classname %> extends <% if( useredis ){ %>Redisconnector<% }else{ %>re
 		return
 
 	<% if( useredis ){ %>_<% } %>start: =>
-		@debug "START"
+		@debug( "START" )
 		return
 
 #export this class
