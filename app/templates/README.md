@@ -2,7 +2,7 @@
 ============
 
 [![Build Status](https://secure.travis-ci.org/<%= githubuser %>/<%= modulename %>.png?branch=master)](http://travis-ci.org/<%= githubuser %>/<%= modulename %>)
-[![Windows Tests](https://img.shields.io/appveyor/ci/<%= githubuser %>/<%= modulename %>.svg?label=Windows%20Test)]()
+[![Windows Tests](https://img.shields.io/appveyor/ci/<%= githubuser %>/<%= modulename %>.svg?label=Windows%20Test)](https://ci.appveyor.com/project/<%= githubuser %>/<%= modulename %>)
 [![Dependency Status](https://david-dm.org/<%= githubuser %>/<%= modulename %>.png)](https://david-dm.org/<%= githubuser %>/<%= modulename %>)
 [![NPM version](https://badge.fury.io/js/<%= modulename %>.png)](http://badge.fury.io/js/<%= modulename %>)
 
