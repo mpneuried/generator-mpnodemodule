@@ -60,10 +60,19 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
         return selection.addtests
       })
     },{
+      type: "radio",
+      name: 'dockertest_system',
+      message: 'Select the docker test operating system?',
+      choices: [ "alpine", "ubuntu" ],
+      default: "alpine",
+      when: (function( selection ){
+        return selection.dockertesting
+      })
+    },{
       type: "checkbox",
       name: 'dockertest_versions',
       message: 'Select the node versions you want to add?',
-      choices: [ "latest", "lts", "0.10", "0.12", "4.2", "4.4", "5.0", "5.4", "6.0", "6.1" ],
+      choices: [ "latest", "lts", "0.10", "0.12", "4.2", "4.4", "4.5", "5.0", "5.4", "6.0", "6.1", "6.4" ],
       default: [ "latest", "lts" ],
       when: (function( selection ){
         return selection.dockertesting
@@ -90,6 +99,7 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       this.addtests = props.addtests;
       this.dockertesting = props.dockertesting;
       this.dockertest_versions = props.dockertest_versions;
+      this.dockertest_system = props.dockertest_system;
       this.useredis = props.useredis;
       this.usedocs = props.usedocs;
       var _d = new Date();
@@ -134,11 +144,20 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
         mkdirp('dockertests');
         var _versions = [];
         for (var i = this.dockertest_versions.length - 1; i >= 0; i--) {
+          var _dsys = this.dockertest_system;
           var _dversion = this.dockertest_versions[i];
           if( [ "lts", "latest" ].indexOf( _dversion ) >= 0 ){
-            this.template('dockertests/Dockerfile.xxx', "dockertests/Dockerfile." + _dversion, { dockertag: ( _dversion === "lts" ? "argon" : "latest" ) });
+            if( _dsys == "alpine" ){
+              this.template('dockertests/Dockerfile.xxx', "dockertests/Dockerfile." + _dversion, { dockerimage: "alpine-node", dockertag: ( _dversion === "lts" ? "4" : "latest" ) });
+            }else{
+              this.template('dockertests/Dockerfile.xxx', "dockertests/Dockerfile." + _dversion, { dockerimage: "node", dockertag: ( _dversion === "lts" ? "argon" : "latest" ) });
+            }
           } else {
-            this.template('dockertests/Dockerfile.xxx', "dockertests/Dockerfile." + _dversion.replace( ".", "_" ), { dockertag: _dversion });
+            if( _dsys == "alpine" ){
+              this.template('dockertests/Dockerfile.xxx', "dockertests/Dockerfile." + _dversion.replace( ".", "_" ), { dockerimage: "alpine-node", dockertag: _dversion });
+            }else{
+              this.template('dockertests/Dockerfile.xxx', "dockertests/Dockerfile." + _dversion.replace( ".", "_" ), { dockerimage: "node", dockertag: _dversion });
+            }
           }
           _versions.push( 'VERSIONS[' + _versions.length + ']=' + _dversion )
         }
