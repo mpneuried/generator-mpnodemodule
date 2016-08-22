@@ -45,6 +45,7 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|0.4.0|2016-08-22|Added choise of docker os #1; added ci os selection. used test versiosn for docker and ci's|
 |0.3.5|2016-06-20|Appveyor windows test fix|
 |0.3.4|2016-06-20|Fixed link to appveyor windows test; code beautify by [Christopher Zotter](https://github.com/Nachbarshund)|
 |0.3.3|2016-05-19|optimized docker tests|
