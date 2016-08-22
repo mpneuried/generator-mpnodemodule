@@ -2,6 +2,7 @@
 var util = require('util');
 var _capitalize = require( "lodash/capitalize" );
 var _camelCase = require( "lodash/camelCase" );
+var _intersection = require( "lodash/intersection" );
 
 var path = require('path');
 var mkdirp = require( 'mkdirp' );
@@ -53,6 +54,23 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       default: true
     },{
       type: "confirm",
+      name: 'citesting',
+      message: 'Add ci testing configurations',
+      default: true,
+      when: (function( selection ){
+        return selection.addtests
+      })
+    },{
+      type: "checkbox",
+      name: 'citesting_os',
+      message: 'Select the operating systems to generate the ci test configs?',
+      choices: [ "linux", "osx", "windows" ],
+      default: [ "linux", "osx", "windows" ],
+      when: (function( selection ){
+        return selection.citesting
+      })
+    },{
+      type: "confirm",
       name: 'dockertesting',
       message: 'Add docker tests to check the module against multiple node versions?',
       default: false,
@@ -97,6 +115,8 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       this.moduleversion = props.moduleversion;
       this.minnodeversion = props.minnodeversion;
       this.addtests = props.addtests;
+      this.citesting = props.citesting;
+      this.citesting_os = props.citesting_os || [];
       this.dockertesting = props.dockertesting;
       this.dockertest_versions = props.dockertest_versions;
       this.dockertest_system = props.dockertest_system;
@@ -113,8 +133,14 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
     projectfiles: function() {
       this.template('_package.json', 'package.json');
       this.template('Gruntfile.coffee');
-      this.template('_travis.yml', '.travis.yml');
-      this.template('appveyor.yml', 'appveyor.yml');
+      if( this.citesting ){
+        if( _intersection( [ "linux", "osx" ], this.citesting_os ).length ){
+          this.template('_travis.yml', '.travis.yml');
+        }
+        if( this.citesting_os.indexOf( "windows" ) >= 0 ){
+          this.template('appveyor.yml', 'appveyor.yml');
+        }
+      }
       this.template('README.md');
       this.template('LICENSE');
     },

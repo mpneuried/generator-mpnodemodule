@@ -1,5 +1,7 @@
-os:
-  - linux
+os:<% if( citesting_os.indexOf( "linux" ) >= 0 ){ %>
+  - linux<% } %><% if( citesting_os.indexOf( "osx" ) >= 0 ){ %>
+  - osx
+<% } %>
 language: node_js
 <% if( useredis ){ %>services:
   - redis-server
