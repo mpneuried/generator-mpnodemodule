@@ -6,16 +6,9 @@ language: node_js
 <% if( useredis ){ %>services:
   - redis-server
 <% } %>
-node_js:
-  - 0.10
-  - 0.12
-  - 4.0
-  - 4.1
-  - 4.2
-  - 5.0
-  - 5.1
-  - 5.2
-  - iojs
+node_js:<% for (var i = 0, len = test_versions_travis.length; i < len; i++) { %>
+  - <%= test_versions_travis[i] %><% } %>
+
 before_script:
   - "npm install -g mocha grunt-cli"
   - "grunt build"

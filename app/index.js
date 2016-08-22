@@ -10,6 +10,8 @@ var yeoman = require('yeoman-generator');
 
 var yosay = require('yosay');
 
+var getLatestNodeVersions = require( "./loadnodeversions" )
+
 var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
@@ -88,12 +90,12 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       })
     },{
       type: "checkbox",
-      name: 'dockertest_versions',
-      message: 'Select the node versions you want to add?',
+      name: 'test_versions',
+      message: 'Select the node versions you want to test by the ci and/or docker?',
       choices: [ "latest", "lts", "0.10", "0.12", "4.2", "4.4", "4.5", "5.0", "5.4", "6.0", "6.1", "6.4" ],
       default: [ "latest", "lts" ],
       when: (function( selection ){
-        return selection.dockertesting
+        return selection.dockertesting || selection.citesting
       })
     },{
       type: "confirm",
@@ -118,13 +120,47 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       this.citesting = props.citesting;
       this.citesting_os = props.citesting_os || [];
       this.dockertesting = props.dockertesting;
-      this.dockertest_versions = props.dockertest_versions;
+      this.test_versions = props.test_versions;
       this.dockertest_system = props.dockertest_system;
       this.useredis = props.useredis;
       this.usedocs = props.usedocs;
       var _d = new Date();
       this.todaydate = _d.getFullYear() + "-" + ( _d.getMonth() + 1 ) + "-" + _d.getDate();
       this.todayyear = _d.getFullYear();
+      
+      
+
+      if (_intersection(["latest", "lts"], this.test_versions).length) {
+          this.test_versions_travis = [];
+          this.test_versions_appveyor = [];
+          getLatestNodeVersions(function(err, versions) {
+              var _tv, i, len;
+              if (err) {
+                  throw err;
+              }
+              for (i = 0, len = this.test_versions.length; i < len; i++) {
+                  _tv = this.test_versions[i];
+                  switch (_tv) {
+                      case "latest":
+                          this.test_versions_travis.push("node");
+                          this.test_versions_appveyor.push(versions.latest);
+                          break;
+                      case "lts":
+                          this.test_versions_travis.push(versions.lts);
+                          this.test_versions_appveyor.push(versions.lts);
+                          break;
+                      default:
+                          this.test_versions_travis.push(_tv);
+                          this.test_versions_appveyor.push(_tv);
+                  }
+              }
+              done();
+          }.bind(this));
+          return
+      }
+      
+      this.test_versions_travis = this.test_versions;
+      this.test_versions_appveyor = this.test_versions;
       done();
     }.bind(this));
   },
@@ -169,9 +205,9 @@ var GeneratorNodemoduleGenerator = require('yeoman-generator').Base.extend({
       if( this.dockertesting ){
         mkdirp('dockertests');
         var _versions = [];
-        for (var i = this.dockertest_versions.length - 1; i >= 0; i--) {
+        for (var i = this.test_versions.length - 1; i >= 0; i--) {
           var _dsys = this.dockertest_system;
-          var _dversion = this.dockertest_versions[i];
+          var _dversion = this.test_versions[i];
           if( [ "lts", "latest" ].indexOf( _dversion ) >= 0 ){
             if( _dsys == "alpine" ){
               this.template('dockertests/Dockerfile.xxx', "dockertests/Dockerfile." + _dversion, { dockerimage: "alpine-node", dockertag: ( _dversion === "lts" ? "4" : "latest" ) });

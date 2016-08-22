@@ -5,8 +5,17 @@ var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
 var os = require('os');
+var loadnodeversions = require('../app/loadnodeversions');
+var nodeversions = {};
 
+    
 describe('generator-nodemodule:app', function () {
+  before(function (done) {
+    loadnodeversions( function( err, nvs ){
+      nodeversions = nvs;
+      done();
+    });
+  });
   describe('default', function () {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
@@ -101,8 +110,8 @@ describe('generator-nodemodule:app', function () {
           addtests: true,
           citesting: true,
           citesting_os: [ "osx" ],
+          test_versions: [ "latest", "0.10", "lts" ],
           dockertesting: true,
-          dockertest_versions: [ "latest", "0.10", "lts" ],
           dockertest_system: "ubuntu"
         })
         .on('end', done);
@@ -149,6 +158,9 @@ describe('generator-nodemodule:app', function () {
       
       var rgx4 = new RegExp( "os:\n  - osx\n\nlanguage:", "gi" );
       assert.fileContent('.travis.yml', rgx4 );
+      
+      var rgx5 = new RegExp( "node_js:\n  - node\n  - 0.10\n  - " + nodeversions.lts + "\n\nbefore_script:", "gi" );
+      assert.fileContent('.travis.yml', rgx5 );
 
       assert.fileContent('Gruntfile.coffee', "<%= pkg.version %>" );
       
@@ -167,8 +179,8 @@ describe('generator-nodemodule:app', function () {
           useredis: false,
           addtests: true,
           dockertesting: true,
+          test_versions: [ "latest", "0.10", "lts" ],
           citesting_os: [ "windows" ],
-          dockertest_versions: [ "latest", "0.10", "lts" ],
           dockertest_system: "alpine"
         })
         .on('end', done);
@@ -212,6 +224,9 @@ describe('generator-nodemodule:app', function () {
 
       var rgx3 = new RegExp( "FROM alpine-node:0.10", "gi" );
       assert.fileContent('dockertests/Dockerfile.0_10', rgx3 );
+      
+      var rgx4 = new RegExp( "environment:\n  matrix:\n    - nodejs_version: \"" + nodeversions.latest + "\"\n    - nodejs_version: \"0.10\"\n    - nodejs_version: \"" + nodeversions.lts + "\"\n\npull_requests:", "gi" );
+      assert.fileContent('appveyor.yml', rgx4 );
       
       assert.fileContent('Gruntfile.coffee', "<%= pkg.version %>" );
       
